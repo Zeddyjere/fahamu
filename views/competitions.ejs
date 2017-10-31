@@ -1,0 +1,32 @@
+<% include partials/header %>
+
+	<ul id="slide-out" class="side-nav fixed">
+			    <li><div class="userView">
+			      <img src="https://image.ibb.co/gceHXk/Fahamu_logo.jpg" class="circle responsive-img center-align circleborder z-depth-4" alt="Responsive image">
+			      <a href="#!name"><span class="blacktxt centertxt name"><strong><h6 class="namefontsize"><%= currentUser.firstname %> <%= currentUser.secondname %></h6></strong></span></a>
+			      <a href="#!email"><span class="blacktxt centertxt name"><h6><%= currentUser.classname %></h6></span></a>
+			      <% if(currentUser.accountauth != null) { %>
+			      	<a href="#!email"><span class="blacktxt centertxt name"><h6>(<%= currentUser.accountauth %>)</h6></span></a>
+			      <% } %>
+			    </div></li>
+			    <div class="smdividerr"></div>
+			    <li><a  href="/dashboard"><i class="fa fa-tachometer" aria-hidden="true"></i>Dashboard</a></li>
+			    <li><a href="/subjects"><i class="fa fa-book" aria-hidden="true"></i>Subjects</a></li>
+			    <li><a href="/scores"><i class="fa fa-trophy" aria-hidden="true"></i>Scores and Achievements</a></li>
+			    <li class="sidenavli z-depth-2"><a href="/competitons"><i class="fa fa-quora" aria-hidden="true"></i>Competitions</a></li>
+			    <li><a href="/profile"><i class="fa fa-user" aria-hidden="true"></i>Profile</a></li>
+	    </ul>
+			  
+	<div class="main">
+		<div class="headsec">
+			<h4>Competitions</h4>
+			<p>(Be part of exciting competitions here at fahamu)</p>
+		</div>
+		
+		<div class="flashgeneral">
+			<p>Hey there. It's nice to see you interested in fahamu competitions. At the moment, there aren't any competitions yet but we are going to lauch soon, so stay tuned. <span><a href="/subjects">Click here</a></span> to continue revising.</p>
+		</div>
+
+	</div>
+ 
+<% include partials/footer %>

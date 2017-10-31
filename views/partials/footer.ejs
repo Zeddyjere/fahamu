@@ -1,0 +1,51 @@
+    <script src="https://use.fontawesome.com/15ead150cb.js"></script>
+      <script>
+        // Initialize collapse button
+        $(".button-collapse").sideNav({
+            menuWidth: 300, // Default is 300
+            edge: 'left', // Choose the horizontal origin
+            closeOnClick: false, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+            draggable: true // Choose whether you can drag to open on touch screens
+        }
+        );
+        // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+        //$('.collapsible').collapsible();
+         $(document).ready(function() {
+            $('select').material_select();
+          });
+         
+         $(document).ready(function() {
+        $('select').material_select();
+    
+        // for HTML5 "required" attribute
+        $("select[required]").css({
+          display: "inline",
+          height: 0,
+          padding: 0,
+          width: 0
+        });
+      });
+      
+      $("#password").on("focusout", function (e) {
+        if ($(this).val() != $("#passwordConfirm").val()) {
+            $("#passwordConfirm").removeClass("valid").addClass("invalid");
+        } else {
+            $("#passwordConfirm").removeClass("invalid").addClass("valid");
+        }
+    });
+    
+    $("#passwordConfirm").on("keyup", function (e) {
+        if ($("#password").val() != $(this).val()) {
+            $(this).removeClass("valid").addClass("invalid");
+        } else {
+            $(this).removeClass("invalid").addClass("valid");
+        }
+    });
+    
+    $(document).ready(function(){
+    $('.tooltipped').tooltip({delay: 50});
+    });
+        
+      </script>
+  </body>
+</html>

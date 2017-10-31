@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+		<title>Fahamu | Where learning is fun</title>
+		<link rel="icon" href="https://image.ibb.co/dNpjKk/Fahamu_logo_fav.png">
+		<!-- Compiled and minified CSS -->
+  		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+  		<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      	rel="stylesheet">
+      	<link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+      	<link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+      	<link rel="stylesheet" href="/stylesheets/app.css">
+      	<script
+  			src="https://code.jquery.com/jquery-3.2.1.js"
+  			integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  			crossorigin="anonymous">
+  		</script>
+  		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js">
+  		</script>
+  		<script>
+        $(document).ready(function(){
+          // Add smooth scrolling to all links
+          $("a").on('click', function(event) {
+        
+            // Make sure this.hash has a value before overriding default behavior
+            if (this.hash !== "") {
+              // Prevent default anchor click behavior
+              event.preventDefault();
+        
+              // Store hash
+              var hash = this.hash;
+        
+              // Using jQuery's animate() method to add smooth page scroll
+              // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+              $('html, body').animate({
+                scrollTop: $(hash).offset().top
+              }, 800, function(){
+           
+                // Add hash (#) to URL when done scrolling (default click behavior)
+                window.location.hash = hash;
+              });
+            } // End if
+          });
+        });
+        </script>
+	</head>
+	
+	<body class="landingbody">
+
+    <% if(currentUser) { %>
+        <script>window.location.replace("/dashboard");</script>
+    <% } %>
+
+	<div class="navbar-fixed">
+		
+        <nav>
+		    <div class="nav-wrapper">
+		    	<% if(currentUser) { %>
+		      		<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a> 
+		      <% } %>
+
+		      	<a href="#" class="brand-img img-responsive">
+				    <img src="https://image.ibb.co/jbPyda/Fahamu_logo_nav.png">
+				</a>
+		      
+		      	<a href="/" class="brand-logo">Fahamu</a>
+				
+				<ul id="nav-mobile" class="right">
+		      		<li class="hide-on-med-and-down"><a href="/register">Register</a></li>
+		      		<li><a id="customloginbtn-home" href="/login">Login</a></li>
+		      	</ul>
+		      
+		    </div>
+	    </nav>
+	    
+	</div>
+	    <div class="mainheader valign-wrapper">
+	        <div class="row">
+	            <div class="col s12 m12 l6" id="mainspaceleft">
+	            		<p class="mainheaderheadtext">Where Learning Is Fun!</p>
+	                	<p class="mainheadersubheadtext">KCPE revision papers and online assessments. Fahamu offers a wide variety of 
+	                	online assessments for pupils in primary schools. Its main aim is to revolutionize the world of assessments
+	                	and break the monotony of a classroom setting.</p>
+	                
+	            </div>
+	            <div class="col s12 m12 l6 center-align">
+	            	<div class="mainregister z-depth-4">
+	            		<div class="topregister">
+	            			<p class="animated zoomInRight">Start revising today! Have a fun experience.</p>
+	            		</div>
+	            		<div class="row">
+	            			<div class="col s12 m12">
+	            				<form action="/register" method="POST">
+		                        <div class="input-field col s12">
+                                  <input name="username" id="user_name" type="text" class="validate" required="" aria-required="true">
+                                  <label for="user_name">Username</label>
+                                </div>
+                                
+                                <div class="input-field col s12 m6 l6">
+                                  <input name="firstname" id="first_name" type="text" class="validate" required="" aria-required="true">
+                                  <label for="first_name">First Name</label>
+                                </div>
+                                
+                                <div class="input-field col s12 m6 l6">
+                                  <input name="secondname" id="second_name" type="text" class="validate" required="" aria-required="true">
+                                  <label for="second_name">Second Name</label>
+                                </div>
+                                
+                                <div class="input-field col s12 m6 l6">
+                                  <input name="password" id="password" type="password" class="validate" required="" aria-required="true">
+                                  <label for="password">Password</label>
+                                </div>
+                                
+                                <div class="input-field col s12 m6 l6">
+                                  <input name="school" id="school_name" type="text" class="validate" required="" aria-required="true">
+                                  <label for="school_name">Your school</label>
+                                </div>
+                                
+                                      <div class="input-field col s12 l6">
+                                        <select name="classname" required="" aria-required="true">
+                                          <option value="" disabled selected>Class</option>
+                                          <option value="Class 4">Class 4</option>
+                                          <option value="Class 5">Class 5</option>
+                                          <option value="Class 6">Class 6</option>
+                                          <option value="Class 7">Class 7</option>
+                                          <option value="Class 8">Class 8</option>
+                                          
+                                        </select>
+                                        <label>Your Class</label>
+                                      </div>
+                                      
+                                      <div class="input-field col s12 l6">
+                                        <select name="gender" required="" aria-required="true">
+                                          <option value="" disabled selected>Gender</option>
+                                          <option value="Male">Male</option>
+                                          <option value="Female">Female</option>
+                                        </select>
+                                        <label>Your Gender</label>
+                                      </div>
+                                    <button name="action" type="submit" class="waves-effect waves-light btn purplebutton">Register</button>
+		                    </form>
+	            			</div>
+	            		</div>
+	            	</div>
+	            </div>
+	        </div>
+	    </div>
+	    
+	    <div class="smdividerr"></div>
+	    <div class="smdividerr"></div>
+	    
+	    <div class="section2 center">
+	    	<p class="home_title">What you get on Fahamu</p>
+	    	<p class="home_subtitle">How it works</p>
+	    </div>
+	    
+	    <div class="smdividerr"></div>
+	    <div class="smdividerr"></div>
+	    
+	    <div class="section3">
+	    	<div class="container">
+	    		<div class="row">
+	    			<div class="col s12 m6 l3 home_sec2icon_bottompad">
+	    				<div class="center">
+	    					<img class="img-responsive animated fadeInLeft" src="https://image.ibb.co/gqWOyk/online_assessments.png">
+	    				</div>
+	    				<p class="home_subtitle2 center">Online Assessments</p>
+	    				<p class="home_sec2bodytext">
+	    					Fahamu provides you with popular assessments such as KCPE pastpapers. 
+	    					Answer and get your grade instantly with our grading system.
+	    				</p>
+	    			</div>
+	    			
+	    			<div class="col s12 m6 l3 home_sec2icon_bottompad">
+	    				<div class="center">
+	    					<img class="img-responsive animated fadeInDown" src="https://image.ibb.co/hfwCr5/progress_tracking.png">
+	    				</div>
+	    				<p class="home_subtitle2 center">Track your progress</p>
+	    				<p class="home_sec2bodytext">
+	    					Keep track of your performance on your own personal account. Find out your areas of weakness and 
+	    					challenge yourself to become a better pupil.
+	    				</p>
+	    			</div>
+	    			
+	    			<div class="col s12 m6 l3 home_sec2icon_bottompad">
+	    				<div class="center">
+	    					<img class="img-responsive animated fadeInDown" src="https://image.ibb.co/fJRgik/online_competitions.png">
+	    				</div>
+	    				<p class="home_subtitle2 center">Online competitions</p>
+	    				<p class="home_sec2bodytext">
+	    					Fahamu holds competitions from time to time. We believe that competition 
+	    					is healthy and motivates pupils to challenge themselves intellectually.
+	    				</p>
+	    			</div>
+	    			
+	    			<div class="col s12 m6 l3 home_sec2icon_bottompad">
+	    				<div class="center">
+	    					<img class="img-responsive animated fadeInRight" src="https://image.ibb.co/n44MjQ/download_testpapers.png">
+	    				</div>
+	    				<p class="home_subtitle2 center">Download testpapers</p>
+	    				<p class="home_sec2bodytext">
+	    					With Fahamu you can download testpapers and go through them when you don't have access to the internet.
+	    				</p>
+	    			</div>
+	    		</div>
+	    	</div>
+	    </div>
+	    
+	    <div class="smdividerr"></div>
+	    <div class="smdividerr"></div>
+	    
+	    <div class="section4">
+	    		<div class="row">
+	    			<div class="col s12 m12 l6">
+	    				<div class="custompad">
+	    				  <div class="video-container">
+						    <iframe width="953" height="680" src="//www.youtube.com/embed/Q8TXgCzxEnw?rel=0" frameborder="0" allowfullscreen></iframe>
+						  </div>
+	    				</div>
+	    			</div>
+	    			
+	    			<div class="col s12 m12 l6">
+	    				<div class="quote-container">
+	    					<em class="quote">
+	    					"Formal education will make you a living; self-education will make you a fortune."
+		    				</em>
+		    				<div class="smdividerr"></div>
+		    				<p class="quoteauthor">~~ Jim Rohn</p>
+	    				</div>
+	    			</div>
+	    		</div>
+	    </div>
+	    
+	    <div class="section5">
+	    	<div class="row">
+	    		<div class="col s12 m2 l3"></div>
+	    		<div class="col s12 m8 l6">
+	    			<div class="advantages-sec z-depth-2">
+	    				<p class="home_title center">A fun and special experience</p>
+	    				<p class="home_sec3bodytext"><i class="fa fa-check twentypxicon" aria-hidden="true"></i> Popular digitalized revision assessments (With instant grading system).</p>
+	    				<p class="home_sec3bodytext"><i class="fa fa-check twentypxicon" aria-hidden="true"></i> Competitions and rewards for using Fahamu.</p>
+	    				<p class="home_sec3bodytext"><i class="fa fa-check twentypxicon" aria-hidden="true"></i> Performance track and record.</p>
+	    				<p class="home_sec3bodytext"><i class="fa fa-check twentypxicon" aria-hidden="true"></i> Fun and different way of revising for exams.</p>
+	    				<p class="home_sec3bodytext"><i class="fa fa-check twentypxicon" aria-hidden="true"></i> Offline revision through downloading of test papers.</p>
+	    				<div class="smdividerr"></div>
+	    				<div class="center">
+	    					<a class="btn btn-default purplebutton" href="/register">Start revising</a>
+	    				</div>
+	    			</div>
+	    		</div>
+	    		<div class="col s12 m2 l3"></div>
+	    	</div>
+	    </div>
+	    
+	    <div class="footer">
+	        <div class="row">
+	                <div class="col s12 m12 footertext">Designed by: <strong>SoftStudio 2017</strong></div>
+	        </div>
+	    </div>
+
+    <script src="https://use.fontawesome.com/15ead150cb.js"></script>
+      <script>
+        // Initialize collapse button
+        $( document ).ready(function(){
+        	$(".button-collapse").sideNav();
+        })
+        // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+        //$('.collapsible').collapsible();
+         $(document).ready(function() {
+            $('select').material_select();
+          });
+         
+         $(document).ready(function() {
+        $('select').material_select();
+    
+        // for HTML5 "required" attribute
+        $("select[required]").css({
+          display: "inline",
+          height: 0,
+          padding: 0,
+          width: 0
+        });
+      });
+      
+      $("#password").on("focusout", function (e) {
+        if ($(this).val() != $("#passwordConfirm").val()) {
+            $("#passwordConfirm").removeClass("valid").addClass("invalid");
+        } else {
+            $("#passwordConfirm").removeClass("invalid").addClass("valid");
+        }
+    });
+    
+    $("#passwordConfirm").on("keyup", function (e) {
+        if ($("#password").val() != $(this).val()) {
+            $(this).removeClass("valid").addClass("invalid");
+        } else {
+            $(this).removeClass("invalid").addClass("valid");
+        }
+    });
+      </script>
+  </body>
+</html>

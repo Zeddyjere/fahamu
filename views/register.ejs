@@ -1,0 +1,88 @@
+<% include partials/logregheader %>
+		
+		<div class="container">
+		    <div class="row">
+		        <div class="col s12 l3"></div>
+		        <div class="col s12 l6">
+		          
+		          <% if(errormessage && errormessage.length > 0) { %>
+		            <div class="error"><p><%= errormessage %></p></div>
+		          <% } %>
+		          
+		            <div class="registercard">
+		                <h4>Register</h4>
+		                <div class="row">
+		                    <form action="/register" method="POST" class="col s12">
+		                        <div class="input-field col s12">
+                                  <input name="username" id="user_name" type="text" class="validate" required="" aria-required="true">
+                                  <label for="user_name">Username (Will be used to sign in to Fahamu)</label>
+                                </div>
+                                
+                                <div class="input-field col s12 l6">
+                                  <input name="firstname" id="first_name" type="text" class="validate" required="" aria-required="true">
+                                  <label for="first_name">First Name</label>
+                                </div>
+                                
+                                <div class="input-field col s12 l6">
+                                  <input name="secondname" id="second_name" type="text" class="validate" required="" aria-required="true">
+                                  <label for="second_name">Second Name</label>
+                                </div>
+                                
+                                <div class="input-field col s12">
+                                  <input name="password" id="password" type="password" class="validate" required="" aria-required="true">
+                                  <label for="password">Password (Will be used to sign in to Fahamu)</label>
+                                </div>
+                                
+                                <div class="input-field col s12">
+                                  <input name="confirm" id="passwordConfirm" type="password" class="validate" required="" aria-required="true">
+                                  <label for="passwordConfirm" id="lblPasswordConfirm" data-error="Password not match" data-success="Password Match">Confirm Password</label>
+                                </div>
+                                
+                                <div class="input-field col s12">
+                                  <input name="school" id="school_name" type="text" class="validate" required="" aria-required="true">
+                                  <label for="school_name">Your school</label>
+                                </div>
+                                
+                                      <div class="input-field col s12 l6">
+                                        <select name="classname" required="" aria-required="true">
+                                          <option value="" disabled selected>Choose your class</option>
+                                          <option value="Class 4">Class 4</option>
+                                          <option value="Class 5">Class 5</option>
+                                          <option value="Class 6">Class 6</option>
+                                          <option value="Class 7">Class 7</option>
+                                          <option value="Class 8">Class 8</option>
+                                          
+                                        </select>
+                                        <label>Your Class</label>
+                                      </div>
+                                      
+                                      <div class="input-field col s12 l6">
+                                        <select name="gender" required="" aria-required="true">
+                                          <option value="" disabled selected>Choose your gender</option>
+                                          <option value="Male">Male</option>
+                                          <option value="Female">Female</option>
+                                        </select>
+                                        <label>Your Gender</label>
+                                      </div>
+                                    <button name="action" type="submit" class="waves-effect waves-light btn purplebutton">Register</button>
+		                    </form>
+		                </div>
+		            </div>
+		            <p class="center-align spaceup">Already have an account? <a class="purpletxt" href="/login">Sign in</a></p>
+		        </div>
+		        <div class="col s12 l3"></div>
+		    </div>
+		</div>
+		
+		<script>
+		  var pass = document.getElementById("password");
+		  var confirm = document.getElementById("confirm_password");
+		  
+		  if(pass.value != confirm.value) {
+		    alert("Your passwords dont match");
+		    
+		  }
+		</script>
+
+		
+<% include partials/footer %>

@@ -1,0 +1,579 @@
+<% include partials/quizheader %>
+
+    <ul id="slide-out" class="side-nav">
+			    <li><div class="userView">
+			      <img src="https://image.ibb.co/gceHXk/Fahamu_logo.jpg" class="circle responsive-img center-align circleborder z-depth-4" alt="Responsive image">
+			      <a href="#!name"><span class="blacktxt centertxt name"><strong><h6 class="namefontsize"><%= currentUser.firstname %> <%= currentUser.secondname %></h6></strong></span></a>
+			      <a href="#!email"><span class="blacktxt centertxt name"><h6><%= currentUser.classname %></h6></span></a>
+			      <a href="#!email"><span class="blacktxt centertxt name"><h6><p><%= kiswahili.testpaperName %></p></h6></span></a>
+			      <% if(currentUser.accountauth != null) { %>
+			      	<a href="#!email"><span class="blacktxt centertxt name"><h6>(<%= currentUser.accountauth %>)</h6></span></a>
+			      <% } %>
+			    </div></li>
+			    <div class="smdividerr"></div>
+			    <li class="sidenavli"><a href="/subjects"><i class="fa fa-times-circle" aria-hidden="true"></i>Quit Revision</a></li>
+	</ul>
+
+    <div class="row">
+        <div class="smdividerr"></div>
+        <div class="col s12 m2 hideonmob">
+            <div class="activityitem">
+                <h5>Kiswahili <%= kiswahili.className %></h5>
+                <p><%= kiswahili.testpaperName %></p>
+            </div>
+            <div class="activityitem spaceup">
+                <p>Question Number:</p>
+                <h5><span id="questioncount">1</span> / <%= kiswahili.questions.length%> </h5>
+            </div>
+            <a href="/subjects" class="btn btn-default redbutton spaceup semidemifull" onclick="return confirm('Are you sure you want to quit revision? If you were in the middle of a testpaper your current results will be lost.')">Quit Revision</a>
+        </div>
+        <div class="col s12 m8">
+            
+            <div class="hide" id="rv_noreview1">
+                <p class="flashgeneral nomargin">Umepata kila kitu. Kazi nzuri sana, hakuna kitu cha kuchunguza :)</p>
+            </div>
+            
+            <div class="hide" id="rv_noreview2">
+                <p class="flashgeneral nomargin">Hukujibu baadhi ya maswali. Utaangalia tu yale ulijaribu.</p>
+                <div class="smdividerr"></div>
+            </div>
+            
+            <div class="hide" id="rv_noreview3">
+                <p class="flashgeneral nomargin">Samahani, lakini hakuna maswali ya kuchunguza :(</p>
+            </div>
+            
+            <div class="hide" id="donetest">
+                <p class="flashgeneral nomargin">Umefanya karatasi hii kabla! Ili kurejea tena, futa matokeo yako ya awali kwenye ukurasa wa alama na mafanikio. <span><a href="/scores">Bonyeza hapa</a></span></p>
+                <div class="smdividerr"></div>
+            </div>
+            
+            <div id="hidequiz">
+                <div class="q_imageview" id="passageView"></div>
+            <div class="q_questionview" id="question">
+                <div class="progress">
+                  <div class="indeterminate"></div>
+                </div> 
+            </div>
+            
+            <form class="answers">
+              <p class="q_answerview spaceup">
+                <input name="group1" type="radio" id="test1" value="A" />
+                <label id="toast1" for="test1"></label>
+              </p>
+              <p class="q_answerview">
+                <input name="group1" type="radio" id="test2" value="B" />
+                <label id="toast2" for="test2"></label>
+              </p>
+              <p class="q_answerview">
+                <input name="group1" type="radio" id="test3" value="C" />
+                <label id="toast3" for="test3"></label>
+              </p>
+              <p class="q_answerview">
+                <input name="group1" type="radio" id="test4" value="D" />
+                <label id="toast4" for="test4"></label>
+              </p>
+              
+              
+              <div class="smdividerr"></div>
+              
+            </form>
+            
+            <div id="buttonsplace">
+                <button class="btn btn-default purplebutton right" id="next_q_nav"><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
+                <button class="btn btn-default purplebutton right quiznavbtn hide" id="prev_q_nav"><i class="fa fa-angle-double-left" aria-hidden="true"></i></button>
+            </div>
+            
+            <div class="smdividerr"></div>
+            
+            <div id="otherbuttons"></div>
+            </div>
+            
+            <div id="reviewSec" class="hide">
+                <div class="rv_q_passageview center-align" id="rv_passageview"></div>
+            <div class="rv_q_questionview" id="rv_question"></div>
+            
+            <div>
+              <p class="rv_q_answerview spaceup">
+                <label id="rv_toast1" for="test1"></label>
+              </p>
+              <p class="rv_q_answerview">
+                <label id="rv_toast2" for="test2"></label>
+              </p>
+              <p class="rv_q_answerview">
+                <label id="rv_toast3" for="test3"></label>
+              </p>
+              <p class="rv_q_answerview">
+                <label id="rv_toast4" for="test4"></label>
+              </p>
+              
+              <div class="smdividerr"></div>
+              
+              <button onclick="nextaction();" class="btn-flat greybtn right quiznavbtn" id="rv_nextbtn">Next Question</button>
+              
+              <div class="smdividerr"></div>
+              
+            </div>
+            
+            </div>
+            
+            <div id="resultSec" class="hide">
+                <div class="smdividerr hide" id="spaceup_result"></div>
+                <div class="result_top" id="result">
+                    <p class="result_quote" id="quote"> Nice work <%= currentUser.firstname %>. Congrats on your achievement! You are one step closer to success.</p>
+                </div>
+                <div class="result_bottom">
+                    <div class="row center">
+                        <div class="col s3 m5"></div>
+                        <div class="col s6 m2 trophy">
+                            <img src="https://image.ibb.co/dC8RBR/how_to_be_successful_2_e1493914894511_800x453.png" class="responsive-img">
+                        </div>
+                        <div class="col s3 m5"></div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="cols s12 m12">
+                            <p class="scoretext" id="yourscore">Your Score: <span id="marks">25/50</span></p>
+                            <p class="scoretext">Your Percentage: <span id="percentage">50%</span></p>
+                        </div>
+                        <div class="s12 m12"></div>
+                    </div>
+                    
+                    <div class="row padding10px">
+                        <div class="col s12 m4">
+                            <form action="/scores" method="POST">
+                                    <input type="hidden" id="testname" name="test[testpaperName]">
+                                    <input type="hidden" id="testclass" name="test[className]">
+                                    <input type="hidden" id="testsubject" name="test[testpaperSubject]">
+                                    <input type="hidden" id="testresult" name="test[result]">
+                                    <button class="btn btn-default purplebutton" id="savebtn">Save Results <i class="material-icons right">send</i></button>
+                                </form>
+                        </div>
+                        <div class="col s12 m4 center">
+                            <button class="btn-flat clausebtn greybtn left-on-mob spaceuponmob" onclick="reviewTest();" id="reviewbtn">Review Test</button>
+                        </div>
+                        <div class="col s12 m4">
+                            <a href="javascript:window.location.href=window.location.href" onclick="return confirm('Are you sure you want to redo this paper? Current results will be lost.');" class="btn btn-default purplebutton right left-on-mob spaceuponmob">Redo Testpaper</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="smdividerr"></div>
+            
+            <div class="hidable" id="hiddable">
+                <div class="q_questionview" id="refTitleView">
+                    <h5>Question reference section - Kiswahili</h5>
+                </div>
+                <div class="q_questionview spaceup">
+                    <div class="row" id="refView"></div>
+                </div>
+            </div>
+            <div class="smdividerr"></div>
+            
+        </div>
+            
+            
+        <div class="col s12 m2"></div>
+        
+    </div>
+    
+    <!-- ======================================================================= -->
+    <!-- ======================================================================= -->
+    <!-- ======================================================================= -->
+    
+    <script>
+        
+        var questionID = [];
+        var questionsArray = [];
+        var passageArray = [];
+        var choiceAlist = [];
+        var choiceBlist = [];
+        var choiceClist = [];
+        var choiceDlist = [];
+        var answers = [];
+        
+        <% for(var i = 0; i < kiswahili.questions.length; i++) { %>
+              passageArray.push("<%= kiswahili.questions[i].passageView %>");
+              questionID.push("<%= kiswahili.questions[i]._id %>");
+              questionsArray.push("<%= kiswahili.questions[i].questiontext %>");
+              choiceAlist.push("<%= kiswahili.questions[i].choiceA %>");
+              choiceBlist.push("<%= kiswahili.questions[i].choiceB %>");
+              choiceClist.push("<%= kiswahili.questions[i].choiceC %>");
+              choiceDlist.push("<%= kiswahili.questions[i].choiceD %>");
+              answers.push("<%= kiswahili.questions[i].answer %>");
+        <% } %>
+        
+        var pos = 0;
+        var refno = 0
+        var q_count = 1;
+        var correct = 0;
+        var choices;
+        var choice;
+        var clausechoices;
+        var answeredquiz = [];
+        var failedquiz = [];
+        var wrongAnswers = [];
+        var st = 0;
+        
+        var editbtn = document.createElement("a");
+        var deleteform = document.createElement("form");
+        var deletebtn = document.createElement("button");
+        
+        var otherbuttons = document.getElementById("otherbuttons");
+        buttonsplace = document.getElementById("buttonsplace");
+        var answerbtn = document.createElement("button");
+        
+        answerbtn.className = "btn btn-default purplebutton";
+            answerbtn.textContent = "Submit Answer";
+            
+            buttonsplace.appendChild(answerbtn);
+            answerbtn.addEventListener("click", function(){
+                checkAnswer();
+            })
+        
+        var refSec = document.getElementById("hiddable");
+        
+        // This will render the questions
+        <% user.results.forEach(function(result) { %>
+            <% if(kiswahili.testpaperName == result.testpaperName) { %>
+                testpaperDone();
+            <% } else { %>
+                renderquestion();
+            <% } %>
+        <% }) %>
+        
+        renderquestion();
+        // This will render the refference answers section
+        reference();
+        
+        var previousqbutton = document.getElementById("prev_q_nav");
+        var nextqbutton = document.getElementById("next_q_nav");
+        
+        nextqbutton.addEventListener("click", function() {
+            pos++; 
+            q_count++;
+            renderquestion();
+        })
+        
+        previousqbutton.addEventListener("click", function() {
+            if(pos > 0) {
+                pos--; 
+                q_count--;
+                renderquestion();
+            }
+        })
+        
+        
+        function renderquestion() {
+            
+            if(pos > 14) {
+                refSec.classList.add("hide");
+            }
+            
+            if(pos > 0) {
+                previousqbutton.classList.remove("hide");
+            }
+            
+            if(pos == (questionsArray.length - 1)) {
+                nextqbutton.textContent = "Submit quiz";
+            }
+            
+            deleteform.setAttribute("action", "/subjects/kiswahili/<%= kiswahili._id %>/questions/" + questionID[pos] + "?_method=DELETE");
+            deleteform.setAttribute("method", "POST");
+            deletebtn.textContent = "Delete this question";
+            deletebtn.setAttribute("class", "btn btn-default redbutton spaceup nomarginleft");
+            deletebtn.setAttribute("onclick", "return confirm('Confirm delete of this question.')");
+            
+            editbtn.setAttribute("href", "/subjects/kiswahili/<%= kiswahili._id %>/questions/" + questionID[pos] + "/edit");
+            editbtn.textContent = "Edit Question";
+            <% if(currentUser.accountauth == "Dev") { %>
+                otherbuttons.appendChild(editbtn);
+			<% } %>
+            otherbuttons.appendChild(deleteform);
+            <% if(currentUser.accountauth == "Dev") { %>
+				deleteform.appendChild(deletebtn);
+			<% } %>
+            
+            choices = document.getElementsByName("group1");
+            var choicesView = document.getElementsByClassName("q_answerview");
+            var marks = document.getElementById("marks");
+            var percentage = document.getElementById("percentage");
+            var topresultsec = document.getElementById("result");
+            var quote = document.getElementById("quote");
+            var yourscore = document.getElementById("yourscore");
+            var quizhide = document.getElementById("hidequiz");
+            
+            if(pos >= questionsArray.length) {
+                var totalPercent = (correct/<%= kiswahili.questions.length %>) * 100;
+                
+                if(totalPercent >= 70) {
+                    topresultsec.classList.add("pass");
+                    marks.textContent = correct + "/" + <%= kiswahili.questions.length %>;
+                    percentage.textContent = totalPercent + "%";
+                    quote.textContent = "Kazi nzuri. Hongera juu ya mafanikio haya! Ni hatua moja karibu na mafanikio.";
+                    yourscore.classList.add("greentext");
+                } else if (totalPercent >= 50) {
+                    topresultsec.classList.add("average");
+                    marks.textContent = correct + "/" + <%= kiswahili.questions.length %>;
+                    percentage.textContent = totalPercent + "%";
+                    quote.textContent = "Jaribio jema. Lakini unaweza kufanya vizuri kuliko hii.";
+                    yourscore.classList.add("orangetext");
+                } else {
+                    topresultsec.classList.add("fail");
+                    marks.textContent = correct + "/" + <%= kiswahili.questions.length %>;
+                    percentage.textContent = totalPercent + "%";
+                    quote.textContent = "Usijali. Unaweza kufanya vizuri zaidi wakati ujao. Usife Moyo!";
+                    yourscore.classList.add("redtext");
+                }
+                
+                quizhide.classList.add("hide");
+                for(var i = 0; i < choicesView.length; i++) {
+                    choicesView[i].classList.add("hide");
+                }
+                passageView.classList.add("hide");
+                otherbuttons.classList.add("hide");
+                answerbtn.classList.add("hide");
+                next_q_nav.classList.add("hide");
+                previousqbutton.classList.add("hide");
+                
+                var resultSec = document.getElementById("resultSec");
+                var savebtn = document.getElementById("savebtn");
+                resultSec.classList.remove("hide");
+                var testname = document.getElementById("testname");
+                var testclass = document.getElementById("testclass");
+                var testsubject = document.getElementById("testsubject");
+                var testresult = document.getElementById("testresult");
+                
+                testname.value = "<%= kiswahili.testpaperName %>";
+                testclass.value = "<%= kiswahili.className %>";
+                testsubject.value = "Kiswahili";
+                testresult.value = totalPercent;
+                
+            } else {
+            
+            
+              for(var i = 0; i < choices.length; i++) {
+                if(choices[i].checked) {
+                  choices[i].checked = false;
+                }
+              }
+            
+            passageView = document.getElementById("passageView")
+            question = document.getElementById("question");
+            choiceA = document.getElementById("toast1");
+            choiceB = document.getElementById("toast2");
+            choiceC = document.getElementById("toast3");
+            choiceD = document.getElementById("toast4");
+            questioncount = document.getElementById("questioncount");
+            
+            // radiobuttons
+            var radio1 = document.getElementById("test1");
+            var radio2 = document.getElementById("test2");
+            var radio3 = document.getElementById("test3");
+            var radio4 = document.getElementById("test4");
+            
+            inputs = document.getElementsByName("input");
+            
+            if(passageArray[pos] != "") {
+            passageView.classList.remove("hide");
+            } else {
+                passageView.classList.add("hide");
+            }
+            
+            passageView.textContent = escapeHtml(passageArray[pos]);
+            question.textContent = escapeHtml(questionsArray[pos]);
+            choiceA.textContent = escapeHtml(choiceAlist[pos]);
+            choiceB.textContent = escapeHtml(choiceBlist[pos]);
+            choiceC.textContent = escapeHtml(choiceClist[pos]);
+            choiceD.textContent = escapeHtml(choiceDlist[pos]);
+            questioncount.textContent = q_count;
+            
+            answerbtn.classList.remove("disabled");
+             radio1.removeAttribute("disabled");
+             radio2.removeAttribute("disabled");
+             radio3.removeAttribute("disabled");
+             radio4.removeAttribute("disabled");
+             
+        }
+         
+         for(var z = 0; z < answeredquiz.length; z++) {
+             if(pos == answeredquiz[z]) {
+                 answerbtn.classList.add("disabled");
+                 radio1.setAttribute("disabled", "disabled");
+                 radio2.setAttribute("disabled", "disabled");
+                 radio3.setAttribute("disabled", "disabled");
+                 radio4.setAttribute("disabled", "disabled");
+             }
+         }
+    }
+        
+        // function that fills reference section 
+        function reference() {
+            
+            for(var i = 0; i < 15; i++) {
+                var refview = document.getElementById("refViewInner");
+                
+                var breakpoint = document.createElement("br");
+                
+                var answerA = document.createElement("div");
+                answerA.setAttribute("class", "col s12 m3");
+                answerA.textContent = choiceAlist[i];
+                
+                var answerB = document.createElement("div");
+                answerB.setAttribute("class", "col s12 m3");
+                answerB.textContent = choiceBlist[i];
+                
+                var answerC = document.createElement("div");
+                answerC.setAttribute("class", "col s12 m3");
+                answerC.textContent = choiceClist[i];
+                
+                var answerD = document.createElement("div");
+                answerD.setAttribute("class", "col s12 m3");
+                answerD.textContent = choiceDlist[i];
+                
+                refView.appendChild(answerA);
+                refView.appendChild(answerB);
+                refView.appendChild(answerC);
+                refView.appendChild(answerD);
+                refView.appendChild(breakpoint);
+            }
+            
+            
+            
+        }
+        
+        // function that will check and validate answer and add score
+        
+        function checkAnswer() {
+            for(var i = 0; i < choices.length; i++) {
+                if(choices[i].checked) {
+                    choice = choices[i].value;
+                    answeredquiz.push(pos);
+                }
+            }
+            
+            if(choice == answers[pos]) {
+                correct++;
+            } else {
+                failedquiz.push(pos);
+                wrongAnswers.push(choice);
+            }
+        
+            pos++;
+            q_count++;
+            renderquestion();
+        }
+        
+        function testpaperDone() {
+            var done = document.getElementById("donetest");
+            var quiz = document.getElementById("hidequiz");
+            var refSection = document.getElementById("hiddable");
+            quiz.classList.add("hide")
+            done.classList.remove("hide");
+            refSection.classList.add("hide");
+        }
+        
+        function escapeHtml(text) {
+          return text
+              .replace("&amp;", "&") 
+              .replace("&lt;", "<") 
+              .replace("&gt;", ">")
+              .replace("&quot;", '"')
+              .replace("&#039;", "'");
+        }
+        
+        function reviewTest() {
+            alert("Review this paper and see where you went wrong.");
+            var tempdivider = document.getElementById("spaceup_result");
+            tempdivider.classList.remove("hide");
+            var rv_noreview1 = document.getElementById("rv_noreview1");
+            var rv_noreview2 = document.getElementById("rv_noreview2");
+            
+            if(failedquiz.length == 0 && answeredquiz.length == answers.length) {
+                rv_noreview1.classList.remove("hide");
+            } else if(answeredquiz.length != answers.length && failedquiz != 0) {
+                rv_noreview2.classList.remove("hide");
+                renderReview();
+            } else if(failedquiz.length == 0) {
+                rv_noreview3.classList.remove("hide");
+            } else {
+                renderReview();
+            }
+            
+            console.log(failedquiz);
+            console.log(wrongAnswers);
+        }
+        
+        function renderReview() {
+            
+            console.log(st);
+            pos = failedquiz[st];
+            console.log(pos);
+            var reviewSec = document.getElementById("reviewSec");
+            var reviewbtn = document.getElementById("reviewbtn");
+            
+            // Here I am going to fetch the views
+            var rv_passageview = document.getElementById("rv_passageview");
+            var rv_question = document.getElementById("rv_question");
+            var rv_image = document.getElementById("rv_image");
+            var rv_choiceA = document.getElementById("rv_toast1");
+            var rv_choiceB = document.getElementById("rv_toast2");
+            var rv_choiceC = document.getElementById("rv_toast3");
+            var rv_choiceD = document.getElementById("rv_toast4");
+            var rv_answerView = document.getElementsByClassName("rv_q_answerview");
+            
+            rv_choiceA.classList = "";
+            rv_choiceB.classList = "";
+            rv_choiceC.classList = "";
+            rv_choiceD.classList = "";
+            
+            reviewbtn.classList.add("hide");
+            reviewSec.classList.remove("hide");
+            
+            if(passageArray[pos] != "") {
+                rv_passageview.textContent = escapeHtml(passageArray[pos]);
+            } else {
+                rv_passageview.classList.add("hide");
+            }
+            
+            rv_question.textContent = escapeHtml(questionsArray[pos]);
+            rv_choiceA.textContent = escapeHtml(choiceAlist[pos]);
+            rv_choiceB.textContent = escapeHtml(choiceBlist[pos]);
+            rv_choiceC.textContent = escapeHtml(choiceClist[pos]);
+            rv_choiceD.textContent = escapeHtml(choiceDlist[pos]);
+            
+            if(wrongAnswers[st] == "A") {
+                rv_choiceA.classList.add("redtext");
+            } else if(wrongAnswers[st] == "B") {
+                rv_choiceB.classList.add("redtext");
+            } else if(wrongAnswers[st] == "C") {
+                rv_choiceC.classList.add("redtext");
+            } else {
+                rv_choiceD.classList.add("redtext");
+            }
+            
+            if(answers[pos] == "A") {
+                rv_choiceA.classList.add("greentext");
+            } else if (answers[pos] == "B") {
+                rv_choiceB.classList.add("greentext");
+            } else if (answers[pos] == "C") {
+                rv_choiceC.classList.add("greentext");
+            } else {
+                rv_choiceD.classList.add("greentext");
+            }
+            
+        }
+        
+        function nextaction() {
+            if(st == (failedquiz.length-1)) {
+                rv_nextbtn.classList.add("hide");
+            } else {
+                st++;
+                renderReview();
+            }
+        }
+        
+        
+    </script>
+
+<% include partials/footer %>

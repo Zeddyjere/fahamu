@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+		<title>Fahamu</title>
+		<link rel="icon" href="https://image.ibb.co/dNpjKk/Fahamu_logo_fav.png">
+		<!-- Compiled and minified CSS -->
+  		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+  		<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      	rel="stylesheet">
+      	<link rel="stylesheet" href="/stylesheets/app.css">
+      	<script
+  			src="https://code.jquery.com/jquery-3.2.1.js"
+  			integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  			crossorigin="anonymous">
+  		</script>
+  		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js">
+  		</script>
+	</head>
+	
+	<body>
+		
+		<nav>
+		    <div class="nav-wrapper">
+		    	<% if(currentUser) { %>
+		      		<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a> 
+		      <% } %>
+		      <a href="javascript:history.back()" class="brand-img img-responsive">
+				    <img src="https://image.ibb.co/jbPyda/Fahamu_logo_nav.png">
+			  </a>
+		      <a href="#" class="brand-logo center">Fahamu Management</a>
+		      <ul id="nav-mobile" class="right hide-on-med-and-down">
+		      	<% if(!currentUser) { %>
+		      		<li><a href="/login">Sign in</a></li>
+		      		<li><a href="/register">Register</a></li>
+		      	<% } else { %>
+			        <li><a href="/profile">Hello <span class="purpletxt"><%= currentUser.firstname %></span></a></li>
+			        <li><a href="/logout">Logout</a></li>
+		        <% } %>
+		      </ul>
+		      <% if(currentUser) { %>
+		      		<a href="#" data-activates="dropdown2" class="dropdown-button right showonmob"><i class="material-icons">perm_identity</i></a>
+		      <% } %>
+		    </div>
+		    
+			
+			<!-- Dropdown Structure TWO-->
+			<ul class="dropdown-content" id="dropdown2">
+		        <li><a href="/logout">Sign out</a></li>
+		        <li><a href="/profile">Profile</a></li>
+		    </ul>
+
+		</nav>
+		
+		<!-- This is where all the management code will go -->
+		<div class="smdividerr"></div>
+		<div class="container">
+		<div class="headsec nomarginleft">
+		    <div class="row">
+		        <div class="col s12 m6">
+		            <p class="management_smalltitle">Fahamu users currently registered</p>
+		        </div>
+		        <div class="col s12 m6">
+		            <p class="management_totalusers right"><%= user.length %></p>
+		        </div>
+		    </div>
+		</div>
+		<div class="smdividerr"></div>
+		    
+		            
+		            <% for(var i = 0; i < user.length; i++) { %>
+		            
+		            
+		            		
+			            	<div class="management_activityitem">
+			                    <div class="row">
+			                        <div class="col s12 m4">
+	            		                <p class="management_smalltitle2"><%= user[i].firstname %> <%= user[i].secondname %> 
+	            		                
+	            		                    <% if(user[i].accountauth) { %>
+	            		                
+	            		                       <%= "(" + user[i].accountauth + ")" %>
+	            		                       
+	            		                    <% } %> 
+	            		                 </p>
+	            		            </div>
+	            		            
+	                		        <div class="col s12 m4">
+	            		                <p class="management_smalltitle2"><%= user[i].username %></p>
+	            		            </div>
+	            		            
+	            		            <div class="col s12 m4">
+	            		                <p class="management_smalltitle2 purpletxt right"><%= user[i].gender %></p>
+	            		            </div>
+			                    </div>
+			                </div>
+		            		
+		                
+		            <% } %>
+		            
+		            <div class="smdividerr"></div>
+		            
+		          
+      <script src="https://use.fontawesome.com/15ead150cb.js"></script>
+      <script>
+        // Initialize collapse button
+        $(".button-collapse").sideNav({
+            menuWidth: 300, // Default is 300
+            edge: 'left', // Choose the horizontal origin
+            closeOnClick: false, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+            draggable: true // Choose whether you can drag to open on touch screens
+        }
+        );
+        // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+        //$('.collapsible').collapsible();
+         $(document).ready(function() {
+            $('select').material_select();
+          });
+         
+         $(document).ready(function() {
+        $('select').material_select();
+    
+        // for HTML5 "required" attribute
+        $("select[required]").css({
+          display: "inline",
+          height: 0,
+          padding: 0,
+          width: 0
+        });
+      });
+      
+      $("#password").on("focusout", function (e) {
+        if ($(this).val() != $("#passwordConfirm").val()) {
+            $("#passwordConfirm").removeClass("valid").addClass("invalid");
+        } else {
+            $("#passwordConfirm").removeClass("invalid").addClass("valid");
+        }
+    });
+    
+    $("#passwordConfirm").on("keyup", function (e) {
+        if ($("#password").val() != $(this).val()) {
+            $(this).removeClass("valid").addClass("invalid");
+        } else {
+            $(this).removeClass("invalid").addClass("valid");
+        }
+    });
+    
+    $(document).ready(function(){
+    $('.tooltipped').tooltip({delay: 50});
+    });
+        
+      </script>
+  </body>
+</html>

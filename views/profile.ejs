@@ -1,0 +1,139 @@
+<% include partials/header %>
+
+	<ul id="slide-out" class="side-nav fixed">
+			    <li><div class="userView">
+			      <img src="https://image.ibb.co/gceHXk/Fahamu_logo.jpg" class="circle responsive-img center-align circleborder z-depth-4" alt="Responsive image">
+			      <a href="#!name"><span class="blacktxt centertxt name"><strong><h6 class="namefontsize"><%= currentUser.firstname %> <%= currentUser.secondname %></h6></strong></span></a>
+			      <a href="#!email"><span class="blacktxt centertxt name"><h6><%= currentUser.classname %></h6></span></a>
+			      <% if(currentUser.accountauth != null) { %>
+			      	<a href="#!email"><span class="blacktxt centertxt name"><h6>(<%= currentUser.accountauth %>)</h6></span></a>
+			      <% } %>
+			    </div></li>
+			    <div class="smdividerr"></div>
+			    <li><a  href="/dashboard"><i class="fa fa-tachometer" aria-hidden="true"></i>Dashboard</a></li>
+			    <li><a href="/subjects"><i class="fa fa-book" aria-hidden="true"></i>Subjects</a></li>
+			    <li><a href="/scores"><i class="fa fa-trophy" aria-hidden="true"></i>Scores and Achievements</a></li>
+			    <li><a href="/competitions"><i class="fa fa-quora" aria-hidden="true"></i>Competitions</a></li>
+			    <li class="sidenavli z-depth-2"><a href="/profile"><i class="fa fa-user" aria-hidden="true"></i>Profile</a></li>
+	    </ul>
+			  
+	<div class="main">
+		<div class="headsec">
+			<h4>Profile</h4>
+			<p>(Here is your information. Update it or change it if you'd like)</p>
+		</div>
+		
+		<div class="smdividerr"></div>
+		
+		<div class="row">
+		    <div class="col s12 m8">
+		        <div class="activityitem tenpxmargin pr_card">
+		            <div class="row">
+		                <div class="col s12 m3">
+		                    <img src="https://image.ibb.co/gceHXk/Fahamu_logo.jpg" class="circle responsive-img center-align circleborder z-depth-4" alt="Responsive image">
+		                </div>
+		                <div class="col s12 m9">
+		                    <p class="pr_name"><%= currentUser.firstname %> <%= currentUser.secondname %></p>
+		                    <p class="pr_generalheadstop"><%= currentUser.school %></p>
+		                    <p class="pr_generalheads"><%= currentUser.classname %></p>
+		                    <p class="pr_generalheads"><%= currentUser.gender %></p>
+		                </div>
+		            </div>
+		        </div>
+		        
+		        <div class="smdividerr"></div>
+		        
+		        <p class="pr_testhead">Edit/Change your user information <i class="fa fa-caret-down" aria-hidden="true"></i></p>
+		        <div class="activityitem tenpxmargin">
+		            <div class="row">
+		                    <form action="/profile?_method=PUT" method="POST" class="col s12">
+		                        <div class="input-field col s12">
+                                  <input name="user[username]" id="user_name" type="text" class="validate" required="" aria-required="true" value="<%= currentUser.username %>">
+                                  <label for="user_name">Username (Will be used to sign in to Fahamu)</label>
+                                </div>
+                                
+                                <div class="input-field col s12 l6">
+                                  <input name="user[firstname]" id="first_name" type="text" class="validate" required="" aria-required="true" value="<%= currentUser.firstname %>">
+                                  <label for="first_name">First Name</label>
+                                </div>
+                                
+                                <div class="input-field col s12 l6">
+                                  <input name="user[secondname]" id="second_name" type="text" class="validate" required="" aria-required="true" value="<%= currentUser.secondname %>">
+                                  <label for="second_name">Second Name</label>
+                                </div>
+                                
+                                <div class="input-field col s12">
+                                  <input name="user[school]" id="school_name" type="text" class="validate" required="" aria-required="true" value="<%= currentUser.school %>">
+                                  <label for="school_name">Your school</label>
+                                </div>
+                                
+                                      <div class="input-field col s12 l6">
+                                        <select name="user[classname]" required="" aria-required="true">
+                                          <option value="<%= currentUser.classname %>" selected><%= currentUser.classname %></option>
+                                          <option value="Class 4">Class 4</option>
+                                          <option value="Class 5">Class 5</option>
+                                          <option value="Class 6">Class 6</option>
+                                          <option value="Class 7">Class 7</option>
+                                          <option value="Class 8">Class 8</option>
+                                          
+                                        </select>
+                                        <label>Your Class</label>
+                                      </div>
+                                      
+                                      <div class="input-field col s12 l6">
+                                        <select name="user[gender]" required="" aria-required="true" >
+                                          <option value="<%= currentUser.gender %>" selected><%= currentUser.gender %></option>
+                                          <option value="Male">Male</option>
+                                          <option value="Female">Female</option>
+                                        </select>
+                                        <label>Your Gender</label>
+                                      </div>
+                                    <button name="action" type="submit" class="waves-effect waves-light btn purplebutton">Edit User Info</button>
+		                    </form>
+		                </div>
+		                
+		            
+		        </div>
+		        
+		        <div class="smdividerr"></div>
+		        
+		        <form action="/profile?_method=DELETE" method="POST">
+		          <button onclick="return confirm('Are you sure you want to delete your account? All your data on Fahamu will be erased.')" class="btn btn-default redbutton tenpxmargin">Delete Account</button>
+		        </form>
+		        
+		        <div class="smdividerr"></div>
+		        
+		    </div>
+		    <div class="col s12 m4">
+		        <div class="activityitem tenpxmargin pr_height">
+		            <p>Your total score: </p>
+		            <h2 id="totalscore"></h2>
+		        </div>
+		    </div>
+		</div>
+	</div>
+	
+	<script>
+
+	
+		var results = [];
+		var totalresults = 0;
+		
+		<% for(var i = 0; i < user.results.length; i++) { %>
+					results.push(<%= user.results[i].result %>);
+		<% } %>
+		
+		for(var l = 0; l < results.length; l++) {
+			totalresults += results[l];
+		}
+		
+// 		console.log(results);
+// 		console.log(totalresults);
+		
+		var totalscore = document.getElementById("totalscore");
+		totalscore.textContent = totalresults;
+		
+		
+	</script>
+ 
+<% include partials/footer %>

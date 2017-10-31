@@ -1,0 +1,246 @@
+<% include partials/header %>
+
+	<ul id="slide-out" class="side-nav fixed">
+			    <li><div class="userView">
+			      <img src="https://image.ibb.co/gceHXk/Fahamu_logo.jpg" class="circle responsive-img center-align circleborder z-depth-4" alt="Responsive image">
+			      <a href="#!name"><span class="blacktxt centertxt name"><strong><h6 class="namefontsize"><%= currentUser.firstname %> <%= currentUser.secondname %></h6></strong></span></a>
+			      <a href="#!email"><span class="blacktxt centertxt name"><h6><%= currentUser.classname %></h6></span></a>
+			      <% if(currentUser.accountauth != null) { %>
+			      	<a href="#!email"><span class="blacktxt centertxt name"><h6>(<%= currentUser.accountauth %>)</h6></span></a>
+			      <% } %>
+			    </div></li>
+			    <div class="smdividerr"></div>
+			    <li><a  href="/dashboard"><i class="fa fa-tachometer" aria-hidden="true"></i>Dashboard</a></li>
+			    <li><a href="/subjects"><i class="fa fa-book" aria-hidden="true"></i>Subjects</a></li>
+			    <li class="sidenavli z-depth-2"><a href="/scores"><i class="fa fa-trophy" aria-hidden="true"></i>Scores and Achievements</a></li>
+			    <li><a href="/competitions"><i class="fa fa-quora" aria-hidden="true"></i>Competitions</a></li>
+			    <li><a href="/profile"><i class="fa fa-user" aria-hidden="true"></i>Profile</a></li>
+	    </ul>
+			  
+	<div class="main">
+
+    	<div class="headsec">
+            <h4>Scores and Achievements</h4>
+            <p>(Here, you can track your progress throughout your time at Fahamu)</p>
+        </div>
+        
+        <div class="smdividerr"></div>
+        
+        <div class="row">
+        	<div class="col s12 m4">
+        		<div class="activityitem tenpxmargin z-depth-2">
+		        	<p>Your total scores:</p>
+		        	<h1 id="totalscore"></h1>
+		        </div>
+        	</div>
+        	<div class="col s12 m4">
+        		<div class="activityitem tenpxmargin z-depth-2">
+		        	<p>No. of testpapers you have done:</p>
+		        	<h1><%= user.results.length %></h1>
+		        </div>
+        	</div>
+        	<div class="col s12 m4">
+        		<div class="activityitem tenpxmargin z-depth-2">
+		        	<p>Milestones:</p>
+		        	<h1>0</h1>
+		        </div>
+        	</div>
+        </div>
+       
+        
+        <div class="smdividerr"></div>
+        
+        <p class="sc_testhead">Mathematics <i class="fa fa-caret-down" aria-hidden="true"></i></p>
+        
+        <% user.results.forEach(function(result) { %>
+        
+        <% if(result.testpaperSubject == "Mathematics") { %>
+        
+        			<div class="activityitem">
+								  <div class="row">
+					                <div class="col s12 l4">
+					                    <strong><p class="uppercase"><%= result.testpaperName %></p></strong>
+					                </div>
+					                <div class="col s12 l4 center left-on-mob">
+					                    <span class="uppercase"><%= result.className %></span>
+					                </div>
+					                <div class="col s12 l4">
+					                	
+					                	<% if(result.result >= 50) { %>
+					                		<span class="new badge" data-badge-caption="%"><%= result.result %></span>
+					                	<% } else { %>
+					                		<span class="new badge red" data-badge-caption="%"><%= result.result %></span>
+					                	<% } %>
+					                	
+					                	<form action="/scores/<%= result._id %>?_method=DELETE" method="POST">
+					                		<button onclick="deleteConfirm()" class="right btn-flat clausebtn">Delete</button>
+					                	</form>
+					                	
+					                </div>
+					            </div>
+							</div>
+  
+        <% } %>
+            
+      <% }) %>
+      
+      <div class="smdividerr"></div>	
+      
+      <p class="sc_testhead">English <i class="fa fa-caret-down" aria-hidden="true"></i></p>
+      
+      <% user.results.forEach(function(result) { %>
+        
+        <% if(result.testpaperSubject == "English") { %>
+        	<div class="activityitem">
+				  <div class="row">
+	                <div class="col s12 l4">
+	                    <strong><p class="uppercase"><%= result.testpaperName %></p></strong>
+	                </div>
+	                <div class="col s12 l4 center">
+	                    <span class="uppercase left-on-mob"><%= result.className %></span>
+	                </div>
+	                <div class="col s12 l4">
+	                    <% if(result.result >= 50) { %>
+	                		<span class="new badge" data-badge-caption="%"><%= result.result %></span>
+	                	<% } else { %>
+	                		<span class="new badge red" data-badge-caption="%"><%= result.result %></span>
+	                	<% } %>
+	                	
+	                	<form action="/scores/<%= result._id %>?_method=DELETE" method="POST">
+	                		<button onclick="deleteConfirm()" class="right btn-flat clausebtn">Delete</button>
+	                	</form>
+	                </div>
+	            </div>
+			</div>
+        <% } %>
+            
+      <% }) %>
+      
+      <div class="smdividerr"></div>
+      
+      <p class="sc_testhead">Kiswahili <i class="fa fa-caret-down" aria-hidden="true"></i></p>
+      
+      <% user.results.forEach(function(result) { %>
+        
+        <% if(result.testpaperSubject == "Kiswahili") { %>
+        	<div class="activityitem">
+				  <div class="row">
+	                <div class="col s12 l4">
+	                    <strong><p class="uppercase"><%= result.testpaperName %></p></strong>
+	                </div>
+	                <div class="col s12 l4 center left-on-mob">
+	                    <span class="uppercase"><%= result.className %></span>
+	                </div>
+	                <div class="col s12 l4">
+	                    <% if(result.result >= 50) { %>
+	                		<span class="new badge" data-badge-caption="%"><%= result.result %></span>
+	                	<% } else { %>
+	                		<span class="new badge red" data-badge-caption="%"><%= result.result %></span>
+	                	<% } %>
+	                	
+	                	<form action="/scores/<%= result._id %>?_method=DELETE" method="POST">
+	                		<button onclick="deleteConfirm()" class="right btn-flat clausebtn">Delete</button>
+	                	</form>
+	                </div>
+	            </div>
+			</div>
+        <% } %>
+            
+      <% }) %>
+      
+      <div class="smdividerr"></div>
+        
+        <p class="sc_testhead">Science <i class="fa fa-caret-down" aria-hidden="true"></i></p>
+        
+        <% user.results.forEach(function(result) { %>
+        
+        <% if(result.testpaperSubject == "Science") { %>
+        	<div class="activityitem">
+				  <div class="row">
+	                <div class="col s12 l4">
+	                    <strong><p class="uppercase"><%= result.testpaperName %></p></strong>
+	                </div>
+	                <div class="col s12 l4 center left-on-mob">
+	                    <span class="uppercase"><%= result.className %></span>
+	                </div>
+	                <div class="col s12 l4">
+	                    <% if(result.result >= 50) { %>
+	                		<span class="new badge" data-badge-caption="%"><%= result.result %></span>
+	                	<% } else { %>
+	                		<span class="new badge red" data-badge-caption="%"><%= result.result %></span>
+	                	<% } %>
+	                	
+	                	<form action="/scores/<%= result._id %>?_method=DELETE" method="POST">
+	                		<button onclick="deleteConfirm()" class="right btn-flat clausebtn">Delete</button>
+	                	</form>
+	                </div>
+	            </div>
+			</div>
+        <% } %>
+            
+      <% }) %>
+		
+		<div class="smdividerr"></div>
+        
+        <p class="sc_testhead">Social Studies and C.R.E <i class="fa fa-caret-down" aria-hidden="true"></i></p>
+        
+        <% user.results.forEach(function(result) { %>
+        
+        <% if(result.testpaperSubject == "SST") { %>
+        	<div class="activityitem">
+				  <div class="row">
+	                <div class="col s12 l4">
+	                    <strong><p class="uppercase"><%= result.testpaperName %></p></strong>
+	                </div>
+	                <div class="col s12 l4 center left-on-mob">
+	                    <span class="uppercase"><%= result.className %></span>
+	                </div>
+	                <div class="col s12 l4">
+	                    <% if(result.result >= 50) { %>
+	                		<span class="new badge" data-badge-caption="%"><%= result.result %></span>
+	                	<% } else { %>
+	                		<span class="new badge red" data-badge-caption="%"><%= result.result %></span>
+	                	<% } %>
+	                	
+	                	<form action="/scores/<%= result._id %>?_method=DELETE" method="POST">
+	                		<button onClick="confirm();" class="right btn-flat clausebtn">Delete</button>
+	                	</form>
+	                </div>
+	            </div>
+			</div>
+        <% } %>
+            
+      <% }) %>	
+	</div>
+	
+	<div class="smdividerr"></div>
+	
+	<script>
+	
+		var results = [];
+		var totalresults = 0;
+		
+		<% for(var i = 0; i < user.results.length; i++) { %>
+					results.push(<%= user.results[i].result %>);
+		<% } %>
+		
+		for(var l = 0; l < results.length; l++) {
+			totalresults += results[l];
+		}
+		
+		// console.log(results);
+		// console.log(totalresults);
+		
+		var totalscore = document.getElementById("totalscore");
+		totalscore.textContent = totalresults;
+		
+		function confirm() {
+			return confirm("Are you sure?")
+		}
+		
+		
+	</script>
+	
+	
+ 
+<% include partials/footer %>

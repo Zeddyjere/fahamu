@@ -1,0 +1,45 @@
+<% include partials/header %>
+
+<div class="smdividerr"></div>
+
+    <div class="row">
+        <div class="col s12 m3">
+            <div class="activityitem">
+                <h5>Hello, welcome to the development portal.</h5>
+                <p>Subject: <strong>Mathematics</strong></p> <br>
+                <p>Here are some guidelines you'll need.</p>
+            </div>
+        </div>
+        <div class="col s12 m6">
+            <div class="activityitem">
+                <h4>Step 1: Create the Testpaper before adding questions to it.</h4>
+                  <div class="row">
+                    <form action="/subjects/maths" method="POST" class="col s12">
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <input id="testpaper_name" type="text" class="validate" name=maths[testpaperName]>
+                          <label for="testpaper_name">Testpaper Name</label>
+                        </div>
+                        
+                        <div class="input-field col s12">
+                          <select id="class_name" class="validate" name="maths[className]">
+                            <option value="" disabled selected>Choose the class</option>
+                            <option value="Class 4">Class 4</option>
+                            <option value="Class 5">Class 5</option>
+                            <option value="Class 6">Class 6</option>
+                            <option value="Class 7">Class 7</option>
+                            <option value="Class 8">Class 8</option>
+                          </select>
+                          <label for"class_name">Class Name</label>
+                        </div>
+                      </div>
+                        
+                        <button class="btn btn-default purplebutton">Create this testpaper</button>
+                    </form>
+              </div>
+            </div>
+        </div>
+        <div class="col s12 m3"></div>
+    </div>
+
+<% include partials/footer %>

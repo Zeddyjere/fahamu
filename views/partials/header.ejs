@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+		<title>Fahamu</title>
+		<link rel="icon" href="https://image.ibb.co/dNpjKk/Fahamu_logo_fav.png">
+		<!-- Compiled and minified CSS -->
+  		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+  		<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      	rel="stylesheet">
+      	<link rel="stylesheet" href="/stylesheets/app.css">
+      	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+      	<script
+  			src="https://code.jquery.com/jquery-3.2.1.js"
+  			integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  			crossorigin="anonymous">
+  		</script>
+  		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js">
+  		</script>
+	</head>
+	
+	<body>
+		
+		<nav>
+		    <div class="nav-wrapper">
+		    	<% if(currentUser) { %>
+		      		<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a> 
+		      <% } %>
+		     
+		      <a href="#" class="brand-logo center">Fahamu</a>
+		      <ul id="nav-mobile" class="right hide-on-med-and-down">
+		      	<% if(!currentUser) { %>
+		      		<li><a href="/login">Sign in</a></li>
+		      		<li><a href="/register">Register</a></li>
+		      	<% } else { %>
+		      		<% if(currentUser.username === "Zeddyjere") { %>
+		      			<li><a href="/management"><i class="fa fa-cogs" aria-hidden="true"></i> App User Management</a></li>
+		      		<% } %>
+			        <li><a href="/profile">Hello <span class="purpletxt"><%= currentUser.firstname %></span></a></li>
+			        <li><a href="/logout">Logout</a></li>
+		        <% } %>
+		      </ul>
+		      <% if(currentUser) { %>
+		      		<a href="#" data-activates="dropdown2" class="dropdown-button right showonmob"><i class="material-icons">perm_identity</i></a>
+		      <% } %>
+		    </div>
+		    
+			
+			<!-- Dropdown Structure TWO-->
+			<ul class="dropdown-content" id="dropdown2">
+		        <li><a href="/logout">Sign out</a></li>
+		        <li><a href="/profile">Profile</a></li>
+		    </ul>
+			
+			
+			
+		</nav>
+		

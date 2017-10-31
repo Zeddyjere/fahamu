@@ -1,0 +1,84 @@
+<% include partials/header %>
+
+    <ul id="slide-out" class="side-nav fixed">
+  		<li>
+  		  <div class="userView">
+  		    <img src="https://image.ibb.co/gceHXk/Fahamu_logo.jpg" class="circle responsive-img center-align circleborder z-depth-4" alt="Responsive image">
+  		    <a href="#!name"><span class="blacktxt centertxt name"><strong><h6 class="namefontsize"><%= currentUser.firstname %> <%= currentUser.secondname %></h6></strong></span></a>
+  		    <a href="#!email"><span class="blacktxt centertxt name"><h6><%= currentUser.classname %></h6></span></a>
+  		    <% if(currentUser.accountauth != null) { %>
+  		  	  <a href="#!email"><span class="blacktxt centertxt name"><h6>(<%= currentUser.accountauth %>)</h6></span></a>
+  		    <% } %>
+  		  </div>
+  		</li>
+  		
+  		<div class="smdividerr"></div>
+  		
+  		<li><a  href="/dashboard"><i class="fa fa-tachometer" aria-hidden="true"></i>Dashboard</a></li>
+  		<li class="sidenavli z-depth-2"><a href="/subjects"><i class="fa fa-book" aria-hidden="true"></i>Subjects</a></li>
+  		<li><a href="/scores"><i class="fa fa-trophy" aria-hidden="true"></i>Scores and Achievements</a></li>
+  		<li><a href="/competitions"><i class="fa fa-quora" aria-hidden="true"></i>Competitions</a></li>
+  		<li><a href="/profile"><i class="fa fa-user" aria-hidden="true"></i>Profile</a></li>
+  	</ul>
+
+    <div class="main">
+        <div class="headsec">
+			<h4>Subjects</h4>
+			<p>Please choose a subject to start revising.</p>
+		</div>
+		
+          <div class="row">
+              <div class="col s12 m6 l3">
+                  <div class="subjectitem animated">
+                    <div class="center" id="maths">
+                      <p id="mathsicon"><i class="fa fa-plus" aria-hidden="true"></i> <i class="fa fa-minus" aria-hidden="true"></i></p>
+                    </div>
+                    <div class="center">
+                      <a href="subjects/maths" class="btn btn-primary purplebutton littlepadding">Maths</a>
+                    </div>
+                  </div>
+              </div>
+              <div class="col s12 m6 l3">
+                  <div class="subjectitem">
+                    <div class="center" id="english">
+                      <p id="englishicon">E N G</p>
+                    </div>
+                    <div class="center">
+                      <a href="subjects/english" class="btn btn-primary purplebutton littlepadding">English</a>
+                    </div>
+                  </div>
+              </div>
+              <div class="col s12 m6 l3">
+                  <div class="subjectitem">
+                    <div class="center" id="kiswahili">
+                      <p id="kiswahiliicon">K I S W</p>
+                    </div>
+                    <div class="center">
+                      <a href="subjects/kiswahili" class="btn btn-primary purplebutton littlepadding">Kiswahili</a>
+                    </div>
+                  </div>
+              </div>
+              <div class="col s12 m6 l3">
+                  <div class="subjectitem">
+                    <div class="center" id="science">
+                      <p id="scienceicon"><i class="fa fa-flask" aria-hidden="true"></i></p>
+                    </div>
+                    <div class="center">
+                      <a href="subjects/science" class="btn btn-primary purplebutton littlepadding">Science</a>
+                    </div>
+                  </div>
+              </div>
+              <div class="col s12 m6 l3">
+                  <div class="subjectitem">
+                    <div class="center" id="sst">
+                      <p id="ssticon"><i class="fa fa-globe" aria-hidden="true"></i></p>
+                    </div>
+                    <div class="center">
+                      <a href="subjects/sst" class="btn btn-primary purplebutton littlepadding">SST/CRE</a>
+                    </div>
+                  </div>
+              </div>
+          </div>
+
+
+<% include partials/footer %>

@@ -1,0 +1,67 @@
+<% include partials/header %>
+
+<div class="smdividerr"></div>
+
+    <div class="row">
+        <div class="col s12 m3">
+            <div class="activityitem">
+                <h5>Hello, welcome to the development portal.</h5>
+                <p>Subject: <strong>Science</strong></p>
+                <p>Testpaper name: <strong><%= science.testpaperName %></strong></p><br>
+                <p>Here are some guidelines you'll need.</p>
+            </div>
+            <a href="/subjects/science" class="btn btn-default redbutton semifull spaceup">Finish</a>
+        </div>
+        <div class="col s12 m6">
+            <div class="activityitem">
+                <h4>Step 2: Adding questions to a testpaper.</h4>
+                  <div class="row">
+                    <form action="/subjects/science/<%= science._id %>/questions" method="POST" class="col s12">
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <input id="question_image" type="text" class="validate" name=quiz[questionimage]>
+                          <label for="question_image">Question Image (URL)</label>
+                        </div>
+                        <div class="input-field col s12">
+                          <input id="question_text" type="text" class="validate" name=quiz[questiontext]>
+                          <label for="question_text">Question Text</label>
+                        </div>
+                        <div class="input-field col s12">
+                          <input id="choiceA" type="text" class="validate" name=quiz[choiceA]>
+                          <label for="choiceA">Choice A</label>
+                        </div>
+                        <div class="input-field col s12">
+                          <input id="choiceB" type="text" class="validate" name=quiz[choiceB]>
+                          <label for="choiceB">Choice B</label>
+                        </div>
+                        <div class="input-field col s12">
+                          <input id="choiceC" type="text" class="validate" name=quiz[choiceC]>
+                          <label for="choiceC">Choice C</label>
+                        </div>
+                        <div class="input-field col s12">
+                          <input id="choiceD" type="text" class="validate" name=quiz[choiceD]>
+                          <label for="choiceD">Choice D</label>
+                        </div>
+                    
+                        <div class="input-field col s12">
+                          <select id="question_answer" class="validate" name="quiz[answer]">
+                            <option value="" disabled selected>Choose the correct answer</option>
+                            <option value="A">Choice A</option>
+                            <option value="B">Choice B</option>
+                            <option value="C">Choice C</option>
+                            <option value="D">Choice D</option>
+                          </select>
+                          <label for"question_answer">Answer</label>
+                        </div>
+                        
+                      </div>
+                        
+                        <button class="btn btn-default purplebutton">Add this question</button>
+                    </form>
+              </div>
+            </div>
+        </div>
+        <div class="col s12 m3"></div>
+    </div>
+
+<% include partials/footer %>

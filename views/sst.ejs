@@ -1,0 +1,75 @@
+<% include partials/header %>
+
+	<ul id="slide-out" class="side-nav fixed">
+			    <li><div class="userView">
+			      <img src="https://image.ibb.co/gceHXk/Fahamu_logo.jpg" class="circle responsive-img center-align circleborder z-depth-4" alt="Responsive image">
+			      <a href="#!name"><span class="blacktxt centertxt name"><strong><h6 class="namefontsize"><%= currentUser.firstname %> <%= currentUser.secondname %></h6></strong></span></a>
+			      <a href="#!email"><span class="blacktxt centertxt name"><h6><%= currentUser.classname %></h6></span></a>
+			      <% if(currentUser.accountauth != null) { %>
+			      	<a href="#!email"><span class="blacktxt centertxt name"><h6>(<%= currentUser.accountauth %>)</h6></span></a>
+			      <% } %>
+			    </div></li>
+			    <div class="smdividerr"></div>
+			    <li><a  href="/dashboard"><i class="fa fa-tachometer" aria-hidden="true"></i>Dashboard</a></li>
+			    <li class="sidenavli z-depth-2"><a href="/subjects"><i class="fa fa-book" aria-hidden="true"></i>Subjects</a></li>
+			    <li><a href="/scores"><i class="fa fa-trophy" aria-hidden="true"></i>Scores and Achievements</a></li>
+			    <li><a href="/competitions"><i class="fa fa-quora" aria-hidden="true"></i>Competitions</a></li>
+			    <li><a href="/profile"><i class="fa fa-user" aria-hidden="true"></i>Profile</a></li>
+	    </ul>
+			  
+	<div class="main">
+
+    	<div class="headsec">
+            <h4>Social Studies and C.R.E</h4>
+            <p>(Choose a testpaper to start revising)</p>
+        </div>
+		
+		
+			
+			<div class="smdividerr"></div>
+		
+		<% sst.forEach(function(sst){ %>
+		
+		   <% if(sst.className == currentUser.classname) { %>
+		   
+		       
+		<div class="activityitem">
+			  <div class="row">
+                <div class="col s12 l4">
+                    <strong><p class="sevenpxtop uppercase"><%= sst.testpaperName %></p></strong>
+                    <% if(currentUser.accountauth == "Dev") { %>
+				    	<a href="sst/<%= sst._id %>/edit">Edit</a>
+				    <% } %>
+                </div>
+                <div class="col s12 l4 center">
+                    <!--<span class="sevenpxtop"><a class="customgrey"><i class="fa fa-download sevenpxtop tricon" id="triconsize" aria-hidden="true"></i> Download</a></span>-->
+                    <!--<span class="sevenpxtop"><a class="customgrey"><i class="fa fa-info-circle sevenpxtop tricon" id="triconsize" aria-hidden="true"></i> More Info</a></span>-->
+                    <% if(currentUser.accountauth == "Dev") { %>
+				    	<span class="sevenpxtop"><a href="sst/<%= sst._id %>/questions/new" class="customgrey"><i class="fa fa-pencil sevenpxtop tricon" aria-hidden="true"></i> Add Quiz</a></span>
+				    <% } %>
+                </div>
+                <div class="col s12 l4">
+                	<form action="/subjects/sst/<%= sst._id %>?_method=DELETE" method="POST">
+                		<% if(currentUser.accountauth == "Dev") { %>
+					    	<button onclick="return confirm('Confirm erase of this testpaper.')" class="btn btn-default btn-sm redbutton right">Delete</button>
+					    <% } %>
+                	</form>
+                     <a href="sst/<%= sst._id %>" type="button" class="btn btn-default btn-sm purplebutton right">Revise</a>
+                </div>
+            </div>
+		</div>
+		       
+		   <% } %>
+		    
+		 
+		    
+		<% }) %>
+		
+		<div class="smdividerr"></div>
+		<% if(currentUser.accountauth == "Dev") { %>
+		   <a href="sst/new" type="button" class="btn btn-default btn-sm purplebutton m_20pxleft bluebutton">Add a testpaper</a>
+		<% } %>
+		
+	</div>
+ 
+<% include partials/footer %>
