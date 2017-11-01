@@ -149,7 +149,7 @@
                                 </form>
                         </div>
                         <div class="col s12 m4 center">
-                            <button class="btn-flat clausebtn greybtn left-on-mob spaceuponmob" onclick="reviewTest();" id="reviewbtn">Review Test</button>
+                            <button class="btn-flat clausebtn greybtn hideonmob spaceuponmob" onclick="reviewTest();" id="reviewbtn">Review Test</button>
                         </div>
                         <div class="col s12 m4">
                             <a href="javascript:window.location.href=window.location.href" onclick="return confirm('Are you sure you want to redo this paper? Current results will be lost.');" class="btn btn-default purplebutton right left-on-mob spaceuponmob">Redo Testpaper</a>
@@ -304,7 +304,7 @@
             var quizhide = document.getElementById("hidequiz");
             
             if(pos >= questionsArray.length) {
-                var totalPercent = (correct/<%= kiswahili.questions.length %>) * 100;
+                var totalPercent = math.round((correct/<%= kiswahili.questions.length %>) * 100);
                 
                 if(totalPercent >= 70) {
                     topresultsec.classList.add("pass");

@@ -9,8 +9,8 @@ var express = require("express"),
 
 var app = express();
 
-// mongoose.connect("mongodb://localhost/fahamu_official");
-mongoose.connect("mongodb://zeddyjere:redzilla@ds243805.mlab.com:43805/fahamu");
+mongoose.connect("mongodb://localhost/fahamu_official");
+// mongoose.connect("mongodb://zeddyjere:redzilla@ds243805.mlab.com:43805/fahamu");
 // mongodb://zeddyjere:redzilla@ds243805.mlab.com:43805/fahamu
 
 // APP CONFIG
@@ -1087,3 +1087,9 @@ function isDeveloper(req, res, next) {
 app.listen(process.env.PORT, process.env.IP, function() {
     console.log("The server has been started ...");
 })
+
+// $ mongodump -h localhost:27017 -d Loc8r -o ~/tmp/mongodump
+
+//soft-studio-zeddyjere.c9users.io/scores
+
+// mongorestore -h ds243805.mlab.com:43805 -d fahamu -u <user> -p <password> <input db directory>
