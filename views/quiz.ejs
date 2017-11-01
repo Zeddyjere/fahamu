@@ -82,8 +82,8 @@
             </form>
             
             <div id="buttonsplace">
-                <button class="btn btn-default purplebutton right" id="next_q_nav"><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                <button class="btn btn-default purplebutton right quiznavbtn hide" id="prev_q_nav"><i class="fa fa-angle-double-left" aria-hidden="true"></i></button>
+                <button class="btn btn-default purplebutton right clausebtn" id="next_q_nav"><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
+                <button class="btn btn-default purplebutton right clausebtn quiznavbtn hide" id="prev_q_nav"><i class="fa fa-angle-double-left" aria-hidden="true"></i></button>
             </div>
             
             <div class="smdividerr"></div>
@@ -292,7 +292,7 @@
             var yourscore = document.getElementById("yourscore");
             
             if(pos >= questionsArray.length) {
-                var totalPercent = math.round((correct/<%= maths.questions.length %>) * 100);
+                var totalPercent = Math.round((correct/<%= maths.questions.length %>) * 100);
                 
                 if(totalPercent >= 70) {
                     topresultsec.classList.add("pass");
