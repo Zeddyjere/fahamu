@@ -9,7 +9,9 @@ var express = require("express"),
 
 var app = express();
 
-mongoose.connect("mongodb://localhost/fahamu_official");
+// mongoose.connect("mongodb://localhost/fahamu_official");
+mongoose.connect("mongodb://zeddyjere:redzilla@ds243805.mlab.com:43805/fahamu");
+// mongodb://zeddyjere:redzilla@ds243805.mlab.com:43805/fahamu
 
 // APP CONFIG
 app.use(bodyParser.urlencoded({extended: true}));
