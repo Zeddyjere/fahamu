@@ -24,10 +24,15 @@
             <p>(Choose a testpaper to start revising)</p>
         </div>
 		
+		<div class="smdividerr"></div>
 		
+		<div class="hide spacelefthd" id="notavailable">
+                <p class="flashgeneral nomargin">We do not have any test papers for this particular subject at the moment. Come back some other time :)</p>
+                <div class="smdividerr"></div>
+            </div>
 			
 			<div class="smdividerr"></div>
-		
+
 		<% science.forEach(function(science){ %>
 		
 		   <% if(science.className == currentUser.classname) { %>
@@ -65,6 +70,7 @@
 		    
 		<% }) %>
 		
+		
 		<div class="smdividerr"></div>
 		<% if(currentUser.accountauth == "Dev") { %>
     	    <a href="science/new" type="button" class="btn btn-default btn-sm purplebutton m_20pxleft bluebutton">Add a testpaper</a>
@@ -72,5 +78,15 @@
 		
 		
 	</div>
+	
+	<script>
+		
+		var notavailable = document.getElementById("notavailable");
+		
+		if ($('.activityitem').length == 0) { 
+			notavailable.classList.remove("hide");
+		}
+		
+	</script>
  
 <% include partials/footer %>

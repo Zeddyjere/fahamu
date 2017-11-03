@@ -1,5 +1,21 @@
 <% include partials/quizheader %>
 
+    <!-- Modal Structure -->
+      <div id="modal1" class="modal">
+        <div class="modal-content">
+          <h5><%= science.testpaperName %></h5>
+          <p>Before you start this paper, note the following <strong>IMPORTANT</strong> points.</p>
+          <ol>
+              <li>The grey buttons are only used for navigation (To view the next/previous question). Your answer will only be submitted for review after you press the <strong>SUBMIT ANSWER</strong> purple button.</li>
+              <li>Once you click on SUBMIT ANSWER, you will not be able to change the answer given.</li>
+              <li>Skipped answers will not be available for review at the end. </li>
+          </ol>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">START TEST</a>
+        </div>
+      </div>
+
         <ul id="slide-out" class="side-nav">
 			    <li><div class="userView">
 			      <img src="https://image.ibb.co/gceHXk/Fahamu_logo.jpg" class="circle responsive-img center-align circleborder z-depth-4" alt="Responsive image">
@@ -520,6 +536,12 @@
             }
         }
         
+        // JQUERY
+        $(document).ready(function(){
+            // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+            $('.modal').modal();
+            $('#modal1').modal('open');
+         });
         
     </script>
 

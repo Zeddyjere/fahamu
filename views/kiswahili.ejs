@@ -24,10 +24,17 @@
             <p>(Choose a testpaper to start revising)</p>
         </div>
 		
+		<div class="smdividerr"></div>
+		
+		<div class="hide spacelefthd" id="notavailable">
+                <p class="flashgeneral nomargin">Hatuna majaribio yoyote ya mtihani kwa somo hili kwa wakati huu. Rudi wakati mwingine :)</p>
+                <div class="smdividerr"></div>
+            </div>
 		
 			
 			<div class="smdividerr"></div>
-		
+			
+
 		<% kiswahili.forEach(function(kiswahili){ %>
 		
 		   <% if(kiswahili.className == currentUser.classname) { %>
@@ -67,11 +74,23 @@
 		    
 		<% }) %>
 		
+
+		
 		<div class="smdividerr"></div>
 		<% if(currentUser.accountauth == "Dev") { %>
 			<a href="kiswahili/new" type="button" class="btn btn-default btn-sm purplebutton m_20pxleft bluebutton">Add a testpaper</a>				
 		<% } %>
 		
 	</div>
+	
+	<script>
+		
+		var notavailable = document.getElementById("notavailable");
+		
+		if ($('.activityitem').length == 0) { 
+			notavailable.classList.remove("hide");
+		}
+		
+	</script>
  
 <% include partials/footer %>

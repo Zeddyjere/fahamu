@@ -1,5 +1,20 @@
 <% include partials/quizheader %>
 
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+          <h5><%= kiswahili.testpaperName %></h5>
+          <p>Kabla ya kuanza karatasi hii, angalia pointi zifuatazo <strong>MUHIMU</strong>.</p>
+          <ol>
+              <li>Vifungo vya kijivu vinatumika tu kwa urambazaji (Ili kuona swali linalofuata / la awali). Jibu lako litapelekwa tu kwa ukaguzi baada ya kushinikiza <strong>SUBMIT ANSWER</strong>.</li>
+              <li>Mara baada ya kubofya SUBMIT ANSWER, huwezi kubadilisha jibu lililotolewa.</li>
+              <li>Maswali ambayo hayajibiwa, hayatapitiwa mwishowe </li>
+          </ol>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">ANZA KARATASI</a>
+        </div>
+      </div>
+
     <ul id="slide-out" class="side-nav">
 			    <li><div class="userView">
 			      <img src="https://image.ibb.co/gceHXk/Fahamu_logo.jpg" class="circle responsive-img center-align circleborder z-depth-4" alt="Responsive image">
@@ -573,7 +588,13 @@
             }
         }
         
-        
+        // JQUERY
+        $(document).ready(function(){
+            // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+            $('.modal').modal();
+            $('#modal1').modal('open');
+         });
+         
     </script>
 
 <% include partials/footer %>
